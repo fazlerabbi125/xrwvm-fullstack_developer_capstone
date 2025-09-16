@@ -1,6 +1,23 @@
 <html>
 <head>
   <!-- Link the style sheet here -->
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <style>
+        .about-card-container{
+            display: flex;
+            margin:auto;
+        }
+        .about-emp-image{
+            object-position: center;
+            object-fit: cover;
+            height: 220px;
+        }
+        .about-emp-role{
+            color: #57534e;
+            font-style: italic;
+        }
+    </style>
 </head>
 <div>
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
@@ -28,35 +45,36 @@
     <div class="card" style="width: 80%;margin: auto; margin-top:5%;">
       <div class="banner" name="about-header">
       <!-- Insert header information here -->
+        <h1>About Us</h1>
+        Welcome to Best Cars dealership, home to the best cars in North America. We deal in sale of domestic and imported cars at reasonable prices.
       </div>
-      <div style="display: flex;flex-direction: row; margin:auto">
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
+      <div class="about-card-container">
+      <div class="card col" style="width: 30%;">
+        <img class="card-img-top about-emp-image" src="https://img.freepik.com/free-photo/close-up-portrait-young-bearded-man-white-shirt-jacket-posing-camera-with-broad-smile-isolated-gray_171337-629.jpg?semt=ais_incoming" alt="Card image">
         <div class="card-body">
-          <p class="title">Person1</p>
-          <p>Person1 Title</p>
-          <p class="card-text">Some text that explains the person1 in about 2 short sentences</p>
-          <p>person1@example.com</p>
+          <h2 class="title rounded">Ronnie Hart</h2>
+          <p class="about-emp-role">Chief Executive Officer</p>
+          <p class="card-text">Mr. Hart provides strategic leadership and oversees the company's long-term vision and growth initiatives. He is committed to driving organizational excellence and fostering innovation across all business areas.</p>
+          <p class="text-muted">ronnie.hart87@example.com</p>
+        </div>
+      </div>
+      <div class="card col" style="width: 30%;">
+        <img class="card-img-top about-emp-image" src="https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?s=612x612&w=0&k=20&c=kPvoBm6qCYzQXMAn9JUtqLREXe9-PlZyMl9i-ibaVuY=" alt="Card image">
+        <div class="card-body">
+          <h2 class="title rounded">Eli Lambert</h2>
+          <p class="about-emp-role">Chief Technology Officer</p>
+          <p class="card-text">Mr. Lambert leads the company's technological strategy and innovation agenda. He ensures the development of robust, scalable solutions that support operational efficiency and future growth.</p>
+          <p class="text-muted">eli.lambert22@example.com</p>
         </div>
       </div>
 
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
+      <div class="card col" style="width: 30%;">
+        <img class="card-img-top about-emp-image" src="https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-791-1-1024x683.jpg" alt="Card image">
         <div class="card-body">
-          <p class="title">Person2</p>
-          <p>Person2 Title</p>
-          <p class="card-text">Some text that explains the person2 in about 2 short sentences</p>
-          <p>person2@example.com</p>
-        </div>
-      </div>
-
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">Person3</p>
-          <p>Person3 Title</p>
-          <p class="card-text">Some text that explains the person3 in about 2 short sentences</p>
-          <p>person3@example.com</p>
+          <h2 class="title rounded">Anita Oliver</h2>
+          <p class="about-emp-role">Chief Financial Officer</p>
+          <p class="card-text">Ms. Oliver oversees financial planning, risk management, and strategic investment initiatives. She plays a key role in ensuring fiscal responsibility and aligning financial strategies with corporate objectives.</p>
+          <p class="text-muted">anita.oliver32@example.com</p>
         </div>
       </div>
     </div>
