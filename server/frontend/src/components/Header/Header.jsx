@@ -3,6 +3,9 @@ import "../assets/style.css";
 import "../assets/bootstrap.min.css";
 
 const Header = () => {
+    const getActiveClass=(path)=>{
+        return window.location.pathname===path? 'active':'';
+    }
     const logout = async (e) => {
     e.preventDefault();
     let logout_url = window.location.origin+"/djangoapp/logout";
@@ -47,13 +50,13 @@ if ( curr_user !== null &&  curr_user !== "") {
               <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" style={{fontSize: "larger"}} aria-current="page" href="/">Home</a>
+                    <a class={`nav-link ${getActiveClass("/")}`} style={{fontSize: "larger"}} aria-current="page" href="/">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" style={{fontSize: "larger"}} href="/about">About Us</a>
+                    <a class={`nav-link ${getActiveClass("/about")}`} style={{fontSize: "larger"}} href="/about">About Us</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" style={{fontSize: "larger"}} href="/contact">Contact Us</a>
+                    <a class={`nav-link ${getActiveClass("/contact")}`} style={{fontSize: "larger"}} href="/contact">Contact Us</a>
                   </li>
                 </ul>
                 <span class="navbar-text">
