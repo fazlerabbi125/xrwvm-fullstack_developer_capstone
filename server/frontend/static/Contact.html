@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <style>
+        .contact-section{
+            width: 60%;
+            margin: auto;
+            margin-block:5%;
+        }
+        .contact-banner{
+            height: 350px;
+            /* https://userimg-assets-eu.customeriomail.com/images/client-env-107673/1726825864979_how-to-set-up-a-car-showroom-for-your-dealership-6_01J87DF81XF3E6E2DPHE4RC3AR.jpg */
+            background-image: url("/static/cars-contact.jpg");
+            background-position: bottom center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            text-align:center;
+            /* place-content: center;  justify-content + align-content */ 
+            align-content: center; /* Vertically aligns content */
+        }
+        .contact-banner--overlay{
+            border-image-source: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.15));
+            border-image-slice: fill 1;
+        }
+
+        .contact-info-container{
+            column-count: 2;
+            column-gap: 2.5rem;
+        }
+
+        .contact-info-item {
+            break-inside: avoid;   /* Prevent elements from breaking between columns */
+            text-align: center;
+        }
+
+        .contact-info-item:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
+    <div class="container-fluid">
+      <h2 style="padding-right: 5%;">Dealerships</h2>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" style="font-size: larger;" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="font-size: larger;" href="/about">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" style="font-size: larger;" href="/contact">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <section class="card contact-section">
+     <div class="contact-banner contact-banner--overlay">
+        <div class="display-4 text-light">Contact Us</div>
+     </div>
+     <div class="contact-info-container p-4">
+        <div class="contact-info-item">
+            <div class="fs-5 fw-bold">Contact Customer Service</div>
+            <span role="button" class="fs-6 text-primary text-decoration-underline">support@bestcars.com</span>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="fs-5 fw-bold">Contact our National Advertising team</div>
+          <span role="button" class="fs-6 text-primary text-decoration-underline">NationalSales@bestcars.com</span>
+      </div>
+
+        <div class="contact-info-item">
+            <div class="fs-5 fw-bold">Contact our Public Relations team</div>
+            <span role="button" class="fs-6 text-primary text-decoration-underline">PR@bestcars.com</span>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="fs-5 fw-bold">Contact the bestcars.com offices</div>
+          <span class="fs-6 text-primary">312-611-1111</span>
+        </div>
+
+        <div class="contact-info-item">
+            <div class="fs-5 fw-bold">Become a bestcars.com car dealer</div>
+            <span class="fs-6 text-primary">Visit <span role="button" class="text-decoration-underline">growwithbestcars.com</span></span>
+        </div>
+      </div>
+  </section>
+</body>
+</html>
