@@ -30,7 +30,7 @@ SECRET_KEY =\
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-deployment_url = [os.environ['SERVER_URL']] if 'SERVER_URL' in os.environ else []
+deployment_url = [os.environ['DJANGO_URL']] if 'DJANGO_URL' in os.environ else []
 ALLOWED_HOSTS=['localhost',] + deployment_url
 CSRF_TRUSTED_ORIGINS = [] + deployment_url
 
