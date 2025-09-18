@@ -11,10 +11,13 @@ def validate_year(value: int):
     current_year = date.today().year
     if (current_year - 100) < value <= (current_year + 100):
         raise ValidationError(
-            _("The year %(value)s is not within " +
-                "the +/-100 range of the current year"),
+            _(
+                "The year %(value)s is not within "
+                + "the +/-100 range of the current year"
+            ),
             params={"value": value},
         )
+
 
 # Create your models here.
 
@@ -47,6 +50,7 @@ class CarMake(models.Model):
 # - Any other fields you would like to include in car model
 # - __str__ method to print a car make object
 
+
 class CarModel(models.Model):
     class CarType(models.TextChoices):
         SEDAN = "SEDAN", _("Sedan")
@@ -59,10 +63,16 @@ class CarModel(models.Model):
 
     car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
     # Dealer Id (stored in Cloudant, but here as an Integer)
-    dealer_id = models.IntegerField(blank=True, null=True,
-                                        validators=[MinValueValidator(limit_value=1,
-                                     message="Value must be greater than zero")
-                                    ])
+    dealer_id = models.IntegerField(
+        blank=True,
+        null=True,
+        validators=[
+            MinValueValidator(
+                limit_value=1,
+                message="Value must be greater than zero"
+            )
+        ],
+    )
     name = models.CharField(max_length=200, unique=True)
     car_type = models.CharField(max_length=50, choices=CarType.choices)
     # Manufacturing Year
