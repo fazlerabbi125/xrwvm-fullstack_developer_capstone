@@ -8,12 +8,13 @@ const Login = ({ onClose }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [open,setOpen] = useState(true)
+  const [isSubmitting, setisSubmitting] = useState(false);
 
   let login_url = window.location.origin+"/djangoapp/login";
 
   const login = async (e) => {
     e.preventDefault();
-
+    setisSubmitting(true);
     const res = await fetch(login_url, {
         method: "POST",
         headers: {
@@ -26,6 +27,7 @@ const Login = ({ onClose }) => {
     });
     
     const json = await res.json();
+    setisSubmitting(false);
     if (json.status != null && json.status === "Authenticated") {
         sessionStorage.setItem('username', json.userName);
         setOpen(false);        
@@ -60,7 +62,7 @@ const Login = ({ onClose }) => {
               <input name="psw" type="password"  placeholder="Password" className="input_field" onChange={(e) => setPassword(e.target.value)}/>            
               </div>
               <div>
-              <input className="action_button" type="submit" value="Login"/>
+              <input className="action_button" type="submit" value="Login" disabled={isSubmitting}/>
               <input className="action_button" type="button" value="Cancel" onClick={()=>setOpen(false)}/>
               </div>
               <a className="loginlink" href="/register">Register Now</a>

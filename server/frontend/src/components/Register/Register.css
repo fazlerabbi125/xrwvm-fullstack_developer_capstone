@@ -64,7 +64,7 @@
   box-shadow: 2px 2px 3px #999;  
 }
 
-input.submit:disabled {
+input[type="submit"]:disabled {
     cursor: not-allowed;
     pointer-events: none;
 }

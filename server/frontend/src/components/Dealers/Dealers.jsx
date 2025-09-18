@@ -50,9 +50,9 @@ const Dealers = () => {
 let isLoggedIn = sessionStorage.getItem("username") != null ? true : false;
 return(
   <div>
-      <Header/>
-
-     <table className='table'>
+    <Header/>
+    <div className='d-flex justify-content-center mt-4'>
+     <table className='table w-75'>
       <tr>
       <th>ID</th>
       <th>Dealer Name</th>
@@ -88,7 +88,8 @@ return(
           }
         </tr>
       ))}
-     </table>;
+     </table>
+    </div>
   </div>
 )
 }
