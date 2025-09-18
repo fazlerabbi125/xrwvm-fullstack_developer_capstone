@@ -12,6 +12,8 @@ const PostReview = () => {
   const [year, setYear] = useState("");
   const [date, setDate] = useState("");
   const [carmodels, setCarmodels] = useState([]);
+  const [isSubmitting, setisSubmitting] = useState(false);
+  const [loading, setIsLoading] = useState(true);
 
   let curr_url = window.location.href;
   let root_url = curr_url.substring(0,curr_url.indexOf("postreview"));
@@ -20,6 +22,7 @@ const PostReview = () => {
   let dealer_url = root_url+`djangoapp/dealer/${id}`;
   let review_url = root_url+`djangoapp/add_review`;
   let carmodels_url = root_url+`djangoapp/get_cars`;
+  const inputLoadText = <div className='mt-2'>Loading...</div>
 
   const postreview = async ()=>{
     let name = sessionStorage.getItem("firstname")+" "+sessionStorage.getItem("lastname");
@@ -48,6 +51,7 @@ const PostReview = () => {
     });
 
     console.log(jsoninput);
+    setisSubmitting(true);
     const res = await fetch(review_url, {
       method: "POST",
       headers: {
@@ -57,6 +61,7 @@ const PostReview = () => {
   });
 
   const json = await res.json();
+  setisSubmitting(false);
   if (json.status === 200) {
       window.location.href = window.location.origin+"/dealer/"+id;
   }
@@ -66,12 +71,9 @@ const PostReview = () => {
     const res = await fetch(dealer_url, {
       method: "GET"
     });
-    const retobj = await res.json();
-    
-    if(retobj.status === 200) {
-      let dealerobjs = Array.from(retobj.dealer)
-      if(dealerobjs.length > 0)
-        setDealer(dealerobjs[0])
+    const retobj = await res.json();    
+    if(retobj.status === 200 && retobj?.dealer) {
+        setDealer(retobj.dealer)
     }
   }
 
@@ -80,44 +82,55 @@ const PostReview = () => {
       method: "GET"
     });
     const retobj = await res.json();
-    
     let carmodelsarr = Array.from(retobj.CarModels)
     setCarmodels(carmodelsarr)
   }
+
   useEffect(() => {
-    get_dealer();
-    get_cars();
+    const fetchData = async () => {
+        try{
+            await Promise.all([get_dealer(), get_cars()]);
+        } finally{
+            setIsLoading(false)
+        }
+    };
+    fetchData();
   },[]);
 
 
   return (
-    <div>
+    <>
       <Header/>
-      <div  style={{margin:"5%"}}>
-      <h1 style={{color:"darkblue"}}>{dealer.full_name}</h1>
-      <textarea id='review' cols='50' rows='7' onChange={(e) => setReview(e.target.value)}></textarea>
-      <div className='input_field'>
-      Purchase Date <input type="date" onChange={(e) => setDate(e.target.value)}/>
-      </div>
-      <div className='input_field'>
-      Car Make 
-      <select name="cars" id="cars" onChange={(e) => setModel(e.target.value)}>
-      <option value="" selected disabled hidden>Choose Car Make and Model</option>
-      {carmodels.map(carmodel => (
-          <option value={carmodel.CarMake+" "+carmodel.CarModel}>{carmodel.CarMake} {carmodel.CarModel}</option>
-      ))}
-      </select>        
-      </div >
+      <div style={{margin:"5%"}}>
+        {loading? <div className='display-6'>Loading...</div>:(
+            <>
+                <h1 style={{color:"darkblue"}}>{dealer.full_name}</h1>
+                <textarea id='review' cols='50' rows='7' style={{'resize': "none"}}
+                    onChange={(e) => setReview(e.target.value)}></textarea>
+                <div className='input_field'>
+                Purchase Date <input type="date" onChange={(e) => setDate(e.target.value)}/>
+                </div>
+                <div className='input_field'>
+                Car Make 
+                    <select name="cars" id="cars" onChange={(e) => setModel(e.target.value)}>
+                            <option value="" selected disabled hidden>Choose Car Make and Model</option>
+                            {carmodels.map(carmodel => (
+                                <option value={carmodel.CarMake+" "+carmodel.CarModel}>{carmodel.CarMake} {carmodel.CarModel}</option>
+                            ))}
+                    </select>      
+                </div >
 
-      <div className='input_field'>
-      Car Year <input type="int" onChange={(e) => setYear(e.target.value)} max={2023} min={2015}/>
-      </div>
+                <div className='input_field'>
+                Car Year <input type="number" onChange={(e) => setYear(e.target.value)} max={2023} min={2015}/>
+                </div>
 
-      <div>
-      <button className='postreview' onClick={postreview}>Post Review</button>
+                <div>
+                    <button className='btn btn-dark' onClick={postreview} disabled={isSubmitting}>Post Review</button>
+                </div>
+            </>
+        )}
       </div>
-    </div>
-    </div>
+    </>
   )
 }
 export default PostReview

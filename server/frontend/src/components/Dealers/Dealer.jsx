@@ -25,7 +25,7 @@ const Dealer = () => {
   const get_dealer = async () => {
     const res = await fetch(dealer_url, { method: "GET" });
     const retobj = await res.json();
-    if (retobj.status === 200) {
+    if (retobj.status === 200 && retobj?.dealer) {
       setDealer(retobj.dealer);
     }
   }
@@ -66,7 +66,7 @@ const Dealer = () => {
       <Header />
       <div className='px-5'>
         {isLoading ? (
-            <div className="text-dark mt-4">Loading...</div>
+            <div className="text-dark mt-4 fs-2">Loading...</div>
         ) : (
             <>
             {dealer && (
